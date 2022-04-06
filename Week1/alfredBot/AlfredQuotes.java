@@ -23,8 +23,8 @@ public class AlfredQuotes {
         String strDate = formatter.format(date);
         return String.format("It is currently %s.", strDate);
     }
-    
 
+    
     public String respondBeforeAlexis(String conversation) {
         int a = conversation.indexOf("Alexis"); // if alexis is found, value of a will be 0 or greater. 
         int b = conversation.indexOf("Alfred"); // if alfred is found, value of b will be 0 or greater. 

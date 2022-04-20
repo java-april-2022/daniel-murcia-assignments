@@ -8,12 +8,12 @@
 		<version>2.6.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.dm.hoppersreceipt</groupId>
-	<artifactId>hoppersreceipt</artifactId>
+	<groupId>com.dm.fruityloops</groupId>
+	<artifactId>fruityloops</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>hoppersreceipt</name>
-	<description>hopper&apos;s receipt assignment</description>
+	<name>fruityloops</name>
+	<description>fruity loops assignment</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -82,8 +82,6 @@
 		<version>3.6.0</version>
 	</dependency>
 
-    
-    
 	</dependencies>
 
 	<build>

@@ -6,9 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- for Bootstrap CSS -->
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<!-- YOUR own local CSS -->
+
+<!-- For any Bootstrap that uses JS or jQuery-->
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
-
 
 
 <h2>Customer Name: 
@@ -29,6 +38,12 @@
 <h3>Vendor: 
 <c:out value="${vendor}"/>
 </h3>
+
+
+<h1>Dojo Locations</h1>
+<c:forEach var="oneDojo" items="${dojosFromMyController}">
+	<p><c:out value="${oneDojo}"></c:out></p>
+</c:forEach>
 
 
 

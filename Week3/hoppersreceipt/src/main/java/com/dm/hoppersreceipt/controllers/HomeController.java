@@ -1,5 +1,7 @@
 package com.dm.hoppersreceipt.controllers;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,17 @@ public class HomeController {
 		model.addAttribute("vendor", vendor);
 		
         return "index.jsp";
+    }
+    
+    @RequestMapping("/dojos")
+    public String index2(Model model) {
+    	ArrayList<String> dojos = new ArrayList<String>();
+    	dojos.add("Burbank");
+    	dojos.add("Chicago");
+    	dojos.add("Bellevue");
+    	model.addAttribute("dojosFromMyController", dojos);
+    	return "index.jsp";
+    	
     }
 	
 

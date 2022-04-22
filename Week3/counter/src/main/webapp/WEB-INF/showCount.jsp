@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- for Bootstrap CSS -->
+<title>Show Count</title>
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <!-- YOUR own local CSS -->
 
@@ -17,42 +19,27 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <script type="text/javascript" src="js/app.js"></script>
 </head>
-<body>
+<body class="container p-3 my-auto inline-block text-center">
+
+	<h1>
+		You have visited
+		<c:out value="${countToShow}"></c:out>
+		times.
+	</h1>
 
 
-	<h2>
-		Customer Name:
-		<c:out value="${name}" />
-	</h2>
 
-	<h3>
-		Item Name:
-		<c:out value="${item}" />
-	</h3>
+	<a href="/">Test Another Visit?</a>
 
-	<h3>
-		Price: $
-		<c:out value="${price}" />
-	</h3>
+	<br>
+	<br>
 
-	<h3>
-		Description:
-		<c:out value="${description}" />
-	</h3>
+	<a href="/by2">Test A Double Visit?</a>
 
-	<h3>
-		Vendor:
-		<c:out value="${vendor}" />
-	</h3>
+	<br>
+	<br>
 
-
-	<h1>Dojo Locations</h1>
-	<c:forEach var="oneDojo" items="${dojosFromMyController}">
-		<p>
-			<c:out value="${oneDojo}"></c:out>
-		</p>
-	</c:forEach>
-
+	<a href="/reset">Reset Counter</a>
 
 
 </body>

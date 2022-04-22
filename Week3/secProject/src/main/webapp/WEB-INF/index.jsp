@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- for Bootstrap CSS -->
+<title>Index</title>
+
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 <!-- YOUR own local CSS -->
 
@@ -18,42 +18,28 @@
 <script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
+	<h1>Dojo Form</h1>
+	<form action="/results" method="post">
 
-
-	<h2>
-		Customer Name:
-		<c:out value="${name}" />
-	</h2>
-
-	<h3>
-		Item Name:
-		<c:out value="${item}" />
-	</h3>
-
-	<h3>
-		Price: $
-		<c:out value="${price}" />
-	</h3>
-
-	<h3>
-		Description:
-		<c:out value="${description}" />
-	</h3>
-
-	<h3>
-		Vendor:
-		<c:out value="${vendor}" />
-	</h3>
-
-
-	<h1>Dojo Locations</h1>
-	<c:forEach var="oneDojo" items="${dojosFromMyController}">
 		<p>
-			<c:out value="${oneDojo}"></c:out>
+			Name: <input type="text" name="firstName">
 		</p>
-	</c:forEach>
+		<p>
+			Email: <input type="text" name="email">
+		</p>
+		<p>
+			Program: <select name="program">
+				<option value="java">Java</option>
+				<option value="MERN">Java</option>
+				<option value="Azure">Java</option>
+			</select>
+		</p>
 
+		<p>
+			<button>Submit</button>
+		</p>
 
+	</form>
 
 </body>
 </html>

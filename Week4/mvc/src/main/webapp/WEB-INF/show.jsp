@@ -1,20 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Reading Books</title>
-</head>
-<body>
+<%@ taglib prefix="p" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<h1><c:out value="${book.title}"></c:out></h1>
 
-<h3> Description: <c:out value="${book.description}"></c:out></h3>
+<%@ taglib prefix = "t" tagdir="/WEB-INF/tags" %>
+
+<h1><p:out value="${book.title}"></p:out></h1>
+
+<t:partial>
+
+
+
+
+<p:forEach items = "book"></p:forEach>
+
+
+
+<h3> Description: <p:out value="${book.description}"></p:out></h3>
 <h3> Language: <c:out value="${book.language}"></c:out></h3>
 <h3> Number of Pages: <c:out value="${book.numberOfPages}"></c:out></h3>
 
 	
 </body>
+
+
+</t:partial>
+
 </html>

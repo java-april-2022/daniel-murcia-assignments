@@ -27,7 +27,25 @@ public class ArtService {
 	//these methods will Call Repository and use CrudRepo methods. 
 	//find all arts 
 	//create art 
+	
+	public void createArt(Art art) {
+		artRepo.save(art);
+	}
 	//update art 
+	
+	public void updateArt(Art art) {
+		artRepo.save(art);
+	}
 	//delete art 
+	
+	//must pass in ID to delete art by id 
+	public void deleteArt(Long id) {
+		artRepo.deleteById(id);
+	}
+	
+	//Get Art Details 
+	public Art artDetails(Long id) {
+		return artRepo.findById(id).orElse(null);
+	}
 	
 }

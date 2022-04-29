@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 
@@ -25,18 +27,26 @@ public class Art {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	@NotBlank
+	@Size(min=2, max=200)
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	@NotBlank
+	@Size(min=2, max=200)
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	@NotBlank
+	@Size(min=2, max=200)
 	public String getUrl() {
 		return url;
 	}

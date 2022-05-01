@@ -10,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,10 +25,19 @@ public class Expense {
     private Long id;
    
 	@NotBlank
-	@Size(min=2, max=200)
+	@Size(min=2, max=200, message="Name must be at least 2 characters.")
     private String name;
+	
+	@NotBlank
+	@Size(min=2, max=200, message="Vendor must be at least two characters.")
     private String vendor;
+	
+	@NotNull (message="Amount cannot be blank.")
+	@Min(value=1, message = "Amount must be at least $1.")
     private Double amount;
+	
+	@NotBlank
+	@Size(min=2, max=200, message="Description must be at least 2 characters.")
     private String description;
   
     // This will not allow the createdAt column to be updated after creation
@@ -63,7 +74,8 @@ public class Expense {
 		this.id = id;
 	}
 
-
+	@NotBlank
+	@Size(min=2, max=200)
 	public String getName() {
 		return name;
 	}

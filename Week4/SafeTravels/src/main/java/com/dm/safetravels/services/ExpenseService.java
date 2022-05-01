@@ -36,4 +36,22 @@ public class ExpenseService {
 	         return null;
 	     }
 	 }
+	 
+	 //updates the expense 
+	 public Expense updateExpense(Expense e) {
+	     return expenseRepository.save(e);
+	 }
+	 //Get Expense Details 
+		//Get Art Details 
+	public Expense expenseDetails(Long id) {
+		return expenseRepository.findById(id).orElse(null);
+	}
+	
+	//must pass in ID to delete art by id 
+	public void deleteExpense(Long id) {
+		expenseRepository.deleteById(id);
+	}
+	
+
+	 
 }

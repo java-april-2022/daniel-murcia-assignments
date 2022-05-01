@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Edit Expense</title>
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
@@ -22,47 +22,14 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<h1 class="text-center">Save Travels</h1>
 
-	<div class="container col-4">
-
-		<table class="table table-info">
-			<thead>
-				<tr>
-					<th>Expense</th>
-					<th>Vendor</th>
-					<th>Amount</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-
-				<p:forEach items="${expenses}" var="expense">
-					<tr>
-						<!--  this comes from getters/setters in art.java-->
-						<td><p:out value="${expense.name}"></p:out></td>
-						<td><p:out value="${expense.vendor}"></p:out></td>
-						<td><p:out value="${expense.amount}"></p:out></td>
-						<td>
-						
-						<a href= "/edit/${expense.id}">Edit </a>
-						
-						</td>
-					</tr>
-				</p:forEach>
-			</tbody>
-
-		</table>
-
-	</div>
-
-	<h1 class="text-center">Add an Expense:</h1>
+	<h1 class="text-center">Edit Expense:</h1>
 
 	<div
 		class=" d-flex justify-content-center container col-3 bg-info mx-auto p-4">
 
 
-		<form:form action="/create" method="post" modelAttribute="expense">
+		<form:form action="/update/${editExpense.id}" method="put" modelAttribute="editExpense">
 			<div class="form-row col-8 text-white mb-2">
 				<form:label path="name">Expense Name:</form:label>
 				<form:errors path="name" class="text-danger" />

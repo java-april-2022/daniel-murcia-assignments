@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import com.dm.safetravels.models.Expense;
 import com.dm.safetravels.services.ExpenseService;
-import com.example.week4.models.Art;
 
 
 @Controller

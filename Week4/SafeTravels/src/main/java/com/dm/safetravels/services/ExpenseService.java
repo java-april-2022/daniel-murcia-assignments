@@ -41,8 +41,8 @@ public class ExpenseService {
 	 public Expense updateExpense(Expense e) {
 	     return expenseRepository.save(e);
 	 }
+	 
 	 //Get Expense Details 
-		//Get Art Details 
 	public Expense expenseDetails(Long id) {
 		return expenseRepository.findById(id).orElse(null);
 	}

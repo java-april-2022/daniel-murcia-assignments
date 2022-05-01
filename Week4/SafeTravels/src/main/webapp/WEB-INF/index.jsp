@@ -40,13 +40,23 @@
 				<p:forEach items="${expenses}" var="expense">
 					<tr>
 						<!--  this comes from getters/setters in art.java-->
-						<td><p:out value="${expense.name}"></p:out></td>
+						<td>
+						<a href="/expenseDetails/${expense.id}">${expense.name} </a>
+						
+				
+						
+						
+						</td>
 						<td><p:out value="${expense.vendor}"></p:out></td>
 						<td><p:out value="${expense.amount}"></p:out></td>
-						<td>
+						<td class= "d-flex justify-content-between" >
 						
-						<a href= "/edit/${expense.id}">Edit </a>
-						
+						<a class = "btn btn-info" href= "/edit/${expense.id}">Edit </a>
+					
+						<form:form action="/delete/${expense.id}" method="delete">
+					
+						<button class="btn btn-info">Delete</button>
+						</form:form>
 						</td>
 					</tr>
 				</p:forEach>

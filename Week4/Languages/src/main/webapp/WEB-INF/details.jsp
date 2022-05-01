@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Show Expense Details</title>
+<title>Language Details</title>
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
@@ -21,15 +21,29 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 </head>
-<body class = "p-3">
+<body class="container col-3 p-3 text-center">
 
-<h1>Language Details:</h1>
 
-<h2>${language.name}</h2>
-<h4>Creator: ${language.creator}</h4>
-<h4>Current Version: ${language.version}</h4>
 
-<a href="/languages">Go Back</a>
+	<h2>${language.name}</h2>
+	<h4>Creator: ${language.creator}</h4>
+	<h4>Current Version: ${language.version}</h4>
+	<div class = "d-flex justify-content-between">
+	<a class="btn btn-info" href="/edit/${language.id}">Edit </a>
+	<form:form action="/delete/${language.id}" method="delete">
+
+		<button class="btn btn-info">Delete</button>
+	</form:form>
+	
+			
+	</div>
+	
+	<div class = "col-12 text-center">
+	<a href="/languages">Dashboard</a>
+	</div>
+	
+	
+
 
 </body>
 </html>

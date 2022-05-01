@@ -85,7 +85,7 @@
 				<form:errors path="version" class="text-danger" />
 				<form:input path="version" />
 			</div>
-			<input type="submit" value="Submit" />
+			<input class = "btn btn-dark" type="submit" value="Submit" />
 		</form:form>
 
 	</div>

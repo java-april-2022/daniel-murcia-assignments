@@ -34,7 +34,8 @@
 		class=" d-flex justify-content-center container col-3 bg-info mx-auto p-4">
 
 
-		<form:form action="/update/${editLanguage.id}" method="put" modelAttribute="editLanguage">
+		<form:form action="/update/${editLanguage.id}" method="put"
+			modelAttribute="editLanguage">
 			<div class="form-row col-8 text-white mb-2">
 				<form:label path="name">Name:</form:label>
 				<form:errors path="name" class="text-danger" />
@@ -50,9 +51,16 @@
 				<form:errors path="version" class="text-danger" />
 				<form:input path="version" />
 			</div>
-			<input type="submit" value="Submit" />
+			<input class="btn btn-dark" type="submit" value="Submit" />
 		</form:form>
 
+		<form:form action="/delete/${editLanguage.id}" method="delete">
+
+			<button class="btn btn-danger mt-4">Delete</button>
+		</form:form>
+	</div>
+	<div class="col-12 text-center">
+		<a href="/languages">Dashboard</a>
 	</div>
 
 

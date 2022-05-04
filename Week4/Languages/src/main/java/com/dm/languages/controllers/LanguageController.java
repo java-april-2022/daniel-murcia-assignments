@@ -66,7 +66,7 @@ public class LanguageController {
 		languageService.deleteLanguage(id);
 		return "redirect:/languages";
 	}
-
+	
 	//SHOW DETAILS: 
 	@GetMapping("languageDetails/{id}")
 	public String languageDetails(@PathVariable Long id, Model model) {
@@ -74,6 +74,5 @@ public class LanguageController {
 		model.addAttribute("language", language);
 		return "details.jsp";
 	}
-	
 	
 }

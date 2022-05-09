@@ -3,6 +3,7 @@ package com.dm.authentication.controllers;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,13 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.dm.authentication.models.LoginUser;
 import com.dm.authentication.models.User;
+import com.dm.authentication.services.UserService;
 
 @Controller
 public class HomeController {
 
 	//add once service is implemented: 
-	//@Autowired
-	// private UserService userServ;
+	@Autowired
+	 private UserService userServ;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -83,5 +85,6 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
+
 	
 }

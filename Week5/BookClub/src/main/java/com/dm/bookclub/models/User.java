@@ -1,4 +1,4 @@
-package com.dm.userprojects.models;
+package com.dm.bookclub.models;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name="users")
@@ -38,8 +39,9 @@ public class User {
 	@Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
 	private String confirm;
 	
-	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
-	private List<Project> projects;
+	//Define Relationship
+	@OneToMany(mappedBy= "user", fetch=FetchType.LAZY)
+	private List<Book> books;
 
 	public Long getId() {
 		return id;
@@ -81,12 +83,12 @@ public class User {
 		this.confirm = confirm;
 	}
 
-	public List<Project> getProjects() {
-		return projects;
+	public List<Book> getBooks() {
+		return books;
 	}
 
-	public void setProjects(List<Project> projects) {
-		this.projects = projects;
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 	
 	

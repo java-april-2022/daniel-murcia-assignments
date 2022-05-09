@@ -23,26 +23,32 @@
 </head>
 <body>
 
-<h1>Welcome to Projects Dashboard, <c:out value = "${loggedInUser.userName}"></c:out></h1>
+<h1>Welcome, <c:out value = "${loggedInUser.userName}"></c:out>!</h1>
+<h3>Books from everyone's shelves:</h3>
 	<a href="">Home</a> ||
-	<a href="/new">New Project</a> ||
+	<a href="/new">Add a Book!</a> ||
 	<a href="/logout">Logout</a> ||
-
+	
 <table class = "table table-striped">
 <thead>
 	<tr>
-		<th>Project Name</th>
-		<th>Created By</th>
+		<th>ID</th>
+		<th>Title</th>
+		<th>Author</th>
+		<th>Posted By</th>
 	</tr>
 </thead>
-	<c:forEach items = "${projects}" var ="project">
+	<c:forEach items = "${books}" var ="book">
 		<tr>
+		<td>${book.id}</td>
 		<td>
-		<a href = "/projects/projectDetails/${project.id}">${project.projectName}</a>
 		
+		<a href="/show/${book.id}">${book.title}</a> 
 		
 		</td>
-		<td>${project.user.userName}</td>
+		<td>${book.author}</td>
+		<td>${book.user.userName}</td>
+		
 		</tr>
 	</c:forEach>
 	
@@ -54,8 +60,6 @@
 
 
 </table>
-	
-	
-	
 </body>
 </html>
+

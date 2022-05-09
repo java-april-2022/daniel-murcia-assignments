@@ -23,39 +23,31 @@
 </head>
 <body>
 
-<h1>Welcome to Projects Dashboard, <c:out value = "${loggedInUser.userName}"></c:out></h1>
-	<a href="">Home</a> ||
+<div class = "container">
+	<a href="/dashboard">Home</a> ||
 	<a href="/new">New Project</a> ||
 	<a href="/logout">Logout</a> ||
 
-<table class = "table table-striped">
-<thead>
-	<tr>
-		<th>Project Name</th>
-		<th>Created By</th>
-	</tr>
-</thead>
-	<c:forEach items = "${projects}" var ="project">
-		<tr>
-		<td>
-		<a href = "/projects/projectDetails/${project.id}">${project.projectName}</a>
-		
-		
-		</td>
-		<td>${project.user.userName}</td>
-		</tr>
-	</c:forEach>
-	
-	
-<tbody>
+<h1>Project Details:</h1>
 
-</tbody>
+<h2>${project.projectName}</h2>
+<h3>${project.description}</h3>
+<h4>Created By: ${project.user.userName}</h4>
+
+
+<!-- IF THE DISPLAYED PROJECT WAS CREATED BY THE LOGGED IN USER, SHOW EDIT/DELETE BTNS. -->
+<c:if test="${project.user.id == loggedInUser.id}">
+
+<a href="/edit/${project.id}">Edit</a>
+<a href="/delete/${project.id}">Delete</a>
+
+</c:if>
 
 
 
-</table>
-	
-	
-	
+
+
+
+</div>
 </body>
 </html>

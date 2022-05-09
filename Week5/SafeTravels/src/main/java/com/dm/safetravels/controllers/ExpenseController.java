@@ -46,7 +46,7 @@ public class ExpenseController {
 		return "redirect:/";
 	}
 	
-	//Update Art (get/put)
+	//Edit (get/put)
 	@GetMapping ("/edit/{id}")
 	public String editExpense(@PathVariable Long id, Model model) {
 		Expense editExpense=expenseService.expenseDetails(id);
@@ -54,7 +54,7 @@ public class ExpenseController {
 		return "edit.jsp";
 	}
 	
-	//UPDATE METHOD IS STILL MISSING VALIDATIONS: 
+	//UPDATE METHOD: 
 	@PutMapping("/update/{id}")
 	public String updateExpense(@Valid @ModelAttribute("editExpense") Expense editedExpense, BindingResult result, @PathVariable Long id) {
 		if(result.hasErrors()) {

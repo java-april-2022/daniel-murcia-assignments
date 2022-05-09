@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Register User</title>
+<title>Book Details</title>
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
@@ -23,39 +23,50 @@
 </head>
 <body>
 
-<h1>Welcome to Projects Dashboard, <c:out value = "${loggedInUser.userName}"></c:out></h1>
-	<a href="">Home</a> ||
-	<a href="/new">New Project</a> ||
-	<a href="/logout">Logout</a> ||
+<div class = "container">
 
-<table class = "table table-striped">
-<thead>
-	<tr>
-		<th>Project Name</th>
-		<th>Created By</th>
-	</tr>
-</thead>
-	<c:forEach items = "${projects}" var ="project">
-		<tr>
-		<td>
-		<a href = "/projects/projectDetails/${project.id}">${project.projectName}</a>
-		
-		
-		</td>
-		<td>${project.user.userName}</td>
-		</tr>
-	</c:forEach>
-	
-	
-<tbody>
+<h2>${book.title}</h2>
+<a href="/dashboard">Back to the shelves</a>
 
-</tbody>
+<c:if test="${book.user.id != loggedInUser.id }">
+<div>
+<h2>${book.user.userName} read ${book.title} by ${book.author}.</h2>
+
+<h3> Here are ${book.user.userName}'s thoughts:</h3>
+
+</div>
+
+</c:if>
+
+<c:if test="${book.user.id == loggedInUser.id }">
+<div>
+<h2>You read ${book.title} by ${book.author}.</h2>
+
+<h3> Here are your thoughts:</h3>
+
+</div>
+
+</c:if>
 
 
+<p>${book.thoughts}</p>
 
-</table>
-	
-	
-	
+<c:if test="${book.user.id == loggedInUser.id}">
+
+<a href="/edit/${book.id}">Edit</a>
+
+<a href="/delete/${book.id}">Delete</a>
+
+
+</c:if>
+
+
+
+
+
+
+</div>
+
+
 </body>
 </html>

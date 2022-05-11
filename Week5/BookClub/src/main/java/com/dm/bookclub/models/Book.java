@@ -37,6 +37,21 @@ public class Book {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	//Define Relationship:
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="borrower_id")
+	private User borrower;
+
+
+	public User getBorrower() {
+		return borrower;
+	}
+
+
+	public void setBorrower(User borrower) {
+		this.borrower = borrower;
+	}
 
 
 	public Long getId() {
@@ -87,6 +102,7 @@ public class Book {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
 	
 	
 }

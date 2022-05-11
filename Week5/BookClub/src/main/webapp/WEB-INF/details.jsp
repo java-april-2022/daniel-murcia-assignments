@@ -23,16 +23,16 @@
 </head>
 <body>
 
-<div class = "container">
+<div class = "container mx-auto">
 
-<h2>${book.title}</h2>
+<h1 class = "text-info">${book.title}</h1>
 <a href="/dashboard">Back to the shelves</a>
 
 <c:if test="${book.user.id != loggedInUser.id }">
 <div>
 <h2>${book.user.userName} read ${book.title} by ${book.author}.</h2>
 
-<h3> Here are ${book.user.userName}'s thoughts:</h3>
+<h4> Here are ${book.user.userName}'s thoughts:</h4>
 
 </div>
 

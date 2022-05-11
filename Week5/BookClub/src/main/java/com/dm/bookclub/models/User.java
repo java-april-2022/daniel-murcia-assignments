@@ -42,6 +42,19 @@ public class User {
 	//Define Relationship
 	@OneToMany(mappedBy= "user", fetch=FetchType.LAZY)
 	private List<Book> books;
+	
+	//Define Relationship
+	@OneToMany(mappedBy= "user", fetch=FetchType.LAZY)
+	private List<Book> borrowedBooks;
+	
+
+	public List<Book> getBorrowedBooks() {
+		return borrowedBooks;
+	}
+
+	public void setBorrowedBooks(List<Book> borrowedBooks) {
+		this.borrowedBooks = borrowedBooks;
+	}
 
 	public Long getId() {
 		return id;

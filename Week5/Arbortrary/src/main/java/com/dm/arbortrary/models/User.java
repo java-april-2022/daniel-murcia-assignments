@@ -1,4 +1,4 @@
-package com.dm.userprojects.models;
+package com.dm.arbortrary.models;
 
 import java.util.List;
 
@@ -42,27 +42,40 @@ public class User {
 	private String confirm;
 	
 	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
-	private List<Project> projects;
+	private List<Tree> trees;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
-			name = "likes", 
+			name = "visits", 
 			joinColumns = @JoinColumn(name= "user_id"), 
-			inverseJoinColumns = @JoinColumn(name = "project_id")
+			inverseJoinColumns = @JoinColumn(name = "tree_id")
 		)
-	private List<Project> likedProjects;
+	private List<Tree> visitedTrees;
 
 	public Long getId() {
 		return id;
 	}
 
-	public List<Project> getLikedProjects() {
-		return likedProjects;
+	
+	public List<Tree> getTrees() {
+		return trees;
 	}
 
-	public void setLikedProjects(List<Project> likedProjects) {
-		this.likedProjects = likedProjects;
+
+	public void setTrees(List<Tree> trees) {
+		this.trees = trees;
 	}
+
+
+	public List<Tree> getVisitedTrees() {
+		return visitedTrees;
+	}
+
+
+	public void setVisitedTrees(List<Tree> visitedTrees) {
+		this.visitedTrees = visitedTrees;
+	}
+
 
 	public void setId(Long id) {
 		this.id = id;
@@ -100,13 +113,7 @@ public class User {
 		this.confirm = confirm;
 	}
 
-	public List<Project> getProjects() {
-		return projects;
-	}
 
-	public void setProjects(List<Project> projects) {
-		this.projects = projects;
-	}
 	
 	
 }

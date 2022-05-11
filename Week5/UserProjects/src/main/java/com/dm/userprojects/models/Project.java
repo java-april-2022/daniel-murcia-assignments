@@ -1,11 +1,15 @@
 package com.dm.userprojects.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -30,6 +34,23 @@ public class Project {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "likes", 
+			joinColumns = @JoinColumn(name= "project_id"), 
+			inverseJoinColumns = @JoinColumn(name = "user_id")
+		)
+	private List<User> likers;
+	
+
+	public List<User> getLikers() {
+		return likers;
+	}
+
+	public void setLikers(List<User> likers) {
+		this.likers = likers;
+	}
 
 	public Long getId() {
 		return id;

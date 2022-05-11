@@ -2,60 +2,46 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix= "t" tagdir="/WEB-INF/tags" %>
 <%@page isErrorPage="true"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Register User</title>
-<script src="/webjars/jquery/jquery.min.js"></script>
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<t:partial>
 
-<link rel="stylesheet" type="text/css" href="/css/style.css">
-<script type="text/javascript" src="js/app.js"></script>
 
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-</head>
-<body>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Project Name</th>
+					<th>Created By</th>
+					<th>Total Likes</th>
+					<th>Like/Unlike</th>
+				</tr>
+			</thead>
+			<c:forEach items="${projects}" var="project">
+				<tr>
+					<td><a href="/projects/projectDetails/${project.id}">${project.projectName}</a>
+					</td>
+					<td>${project.user.userName}</td>
+					<td>${project.likers.size()}</td>
+					<td><c:choose>
+							<c:when test="${project.likers.contains(userLoggedIn)}">
+								<a href="/project/${project.id}/unlike">Unlike</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/project/${project.id}/like">Like</a>
+							</c:otherwise>
+						</c:choose></td>
+				</tr>
+			</c:forEach>
 
-<h1>Welcome to Projects Dashboard, <c:out value = "${loggedInUser.userName}"></c:out></h1>
-	<a href="">Home</a> ||
-	<a href="/new">New Project</a> ||
-	<a href="/logout">Logout</a> ||
 
-<table class = "table table-striped">
-<thead>
-	<tr>
-		<th>Project Name</th>
-		<th>Created By</th>
-	</tr>
-</thead>
-	<c:forEach items = "${projects}" var ="project">
-		<tr>
-		<td>
-		<a href = "/projects/projectDetails/${project.id}">${project.projectName}</a>
+			<tbody>
+
+			</tbody>
+
+
+
+		</table>
 		
-		
-		</td>
-		<td>${project.user.userName}</td>
-		</tr>
-	</c:forEach>
-	
-	
-<tbody>
+</t:partial>
 
-</tbody>
-
-
-
-</table>
-	
-	
-	
-</body>
-</html>

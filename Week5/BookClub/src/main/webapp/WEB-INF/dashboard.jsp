@@ -23,13 +23,16 @@
 </head>
 <body>
 
+<div class = "container mx-auto">
+
 <h1>Welcome, <c:out value = "${loggedInUser.userName}"></c:out>!</h1>
 <h3>Books from everyone's shelves:</h3>
 	<a href="">Home</a> ||
 	<a href="/new">Add a Book!</a> ||
+	<a href="/bookbroker">Book Broker</a> ||
 	<a href="/logout">Logout</a> ||
 	
-<table class = "table table-striped">
+<table class = "table table-striped table-info">
 <thead>
 	<tr>
 		<th>ID</th>
@@ -57,9 +60,11 @@
 
 </tbody>
 
-
-
 </table>
+
+</div>
+
+
 </body>
 </html>
 

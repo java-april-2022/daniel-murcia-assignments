@@ -10,4 +10,7 @@ import com.dm.bookclub.models.Book;
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long>{
 	List<Book> findAll();
+	List<Book> findByUserIdIs(Long userId);
+	List<Book> findByBorrowerIdIs(Long userId);
+	List<Book> findByBorrowerOrUserIdIs(Long borrowerId, Long userId);
 }

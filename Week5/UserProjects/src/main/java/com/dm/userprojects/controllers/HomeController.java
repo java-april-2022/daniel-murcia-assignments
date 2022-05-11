@@ -81,11 +81,16 @@ public class HomeController {
 		session.invalidate();
 		return "redirect:/";
 	}
+	
+	//*******Dashboard*********
 	@GetMapping("/dashboard")
 	public String dashboard(HttpSession session, Model projectModel) {
 		//check if user is in session; 
 		if(session.getAttribute("loggedInUser")!=null){
+			User user = (User)session.getAttribute("loggedInUser");
+			User userLoggedIn=userService.findById(user.getId());
 			projectModel.addAttribute("projects", projectService.allProjects());
+			projectModel.addAttribute("userLoggedIn", userLoggedIn);
 			return "dashboard.jsp";
 		} 
 		else {
@@ -155,4 +160,29 @@ public class HomeController {
 		projectService.updateProject(editedProject);
 		return "redirect:/dashboard";
 	}
+	
+	//Like Project
+	@GetMapping("/project/{id}/like")
+	public String likeProject(@PathVariable Long id, HttpSession session) {
+		Project project = projectService.getOneProject(id);
+		User user = (User) session.getAttribute("loggedInUser");
+		
+		User userWhoIsLiking=userService.findById(user.getId());
+		
+		projectService.likeProject(project, user);
+		return "redirect:/dashboard";
+	} 
+	
+	//Unlike Project
+	@GetMapping("/project/{id}/unlike")
+	public String unlikeProject(@PathVariable Long id, HttpSession session) {
+		Project project = projectService.getOneProject(id);
+		User user = (User) session.getAttribute("loggedInUser");
+		
+		
+		User userWhoIsUnliking=userService.findById(user.getId());
+		
+		projectService.unlikeProject(project, userWhoIsUnliking);
+		return "redirect:/dashboard";
+	} 
 }

@@ -1,4 +1,4 @@
-package com.dm.bookclub.controllers;
+package com.dm.arbortrary.controllers;
 
 import java.util.List;
 
@@ -11,15 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.dm.bookclub.models.Book;
-import com.dm.bookclub.models.LoginUser;
-import com.dm.bookclub.models.User;
-import com.dm.bookclub.services.BookService;
-import com.dm.bookclub.services.UserService;
+import com.dm.arbortrary.models.LoginUser;
+import com.dm.arbortrary.models.Tree;
+import com.dm.arbortrary.models.User;
+import com.dm.arbortrary.services.TreeService;
+import com.dm.arbortrary.services.UserService;
 
 @Controller
 public class HomeController {
@@ -28,7 +26,7 @@ public class HomeController {
 	private UserService userService;
 
 	@Autowired
-	private BookService bookService;
+	private TreeService treeService;
 	
 	@GetMapping("/")
 	public String index(
@@ -84,65 +82,21 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
-	//*********Dashboard***********
+	//*********Dashboard*********
 	@GetMapping("/dashboard")
-	public String dashboard(HttpSession session, Model model) {
+	public String dashboard(HttpSession session, Model treeModel) {
 		//check if user is in session; 
 		if(session.getAttribute("loggedInUser")!=null){
-			List<Book> books = bookService.getAllBooks();
-			model.addAttribute("books", books);
+			User user = (User)session.getAttribute("loggedInUser");
+			User userLoggedIn=userService.findById(user.getId());
+			treeModel.addAttribute("trees", treeService.allTrees());
+			treeModel.addAttribute("userLoggedIn", userLoggedIn);
 			return "dashboard.jsp";
-		}
-		else {
-			return "redirect:/";
-		}
-		
-	}
-
-	//*******Bookmarket***********
-	@GetMapping("/bookbroker")
-	public String bookBroker(HttpSession session, Model model) {
-		//check if user is in session; 
-		if(session.getAttribute("loggedInUser")!=null){
-			User loggedInUser = (User)session.getAttribute("loggedInUser"); 
-			User userLoggedIn=userService.findById(loggedInUser.getId());
-			model.addAttribute("userLoggedIn", userLoggedIn);
-			List<Book> availableBooks = bookService.unborrowedBooks(loggedInUser);
-			List<Book> borrowedBooks = bookService.borrowedBooks(loggedInUser);
-			model.addAttribute("availableBooks", availableBooks);
-			model.addAttribute("borrowedBooks", borrowedBooks);
-			return "bookbroker.jsp";
-		}
+		} 
 		else {
 			return "redirect:/";
 		}
 	}
-	
-	//Borrow a book 
-	@RequestMapping("/borrow/{bookID}")
-	public String borrowBook(@PathVariable ("bookID") Long bookID, HttpSession session, Model model) {
-
-		System.out.println("book borrowed");
-		User loggedInUser = (User)session.getAttribute("loggedInUser");
-//		User userLoggedIn=userService.findById(loggedInUser.getId());
-		bookService.borrowBook(bookService.findBook(bookID), loggedInUser);
-		return "redirect:/bookbroker";
-			
-	}
-
-	
-	//Return a book 
-	@RequestMapping("/return/{bookID}")
-	public String returnBook(@PathVariable ("bookID") Long bookID, HttpSession session, Model model) {
-
-		System.out.println("book returned");
-		User loggedInUser = (User)session.getAttribute("loggedInUser");
-//		User userLoggedIn=userService.findById(loggedInUser.getId());
-		bookService.unborrowBook(bookService.findBook(bookID), loggedInUser);
-		return "redirect:/bookbroker";
-			
-	}
-	
 	
 
 }
